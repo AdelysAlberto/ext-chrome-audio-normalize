@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Normalizer & Equalizer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-title">
+        <span class="logo-icon">🎚️</span>
+        <h1>Audio Normalizer</h1>
+      </div>
+      <div class="header-actions">
+        <label class="toggle-switch">
+          <input type="checkbox" id="power-toggle" checked>
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </header>
+
+    <!-- Status Banner -->
+    <div class="status-banner" id="status-banner">
+      <span class="status-dot green"></span>
+      <span id="status-text">Normalización continua activa en esta pestaña</span>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="lufs-tab">🎯 Sonoridad</button>
+      <button class="tab-btn" data-tab="eq-tab">🎛️ Ecualizador</button>
+      <button class="tab-btn" data-tab="about-tab">ℹ️ Acerca de</button>
+    </nav>
+
+    <!-- Tab 1: Target LUFS & Presets -->
+    <section class="tab-content active" id="lufs-tab">
+      <div class="card">
+        <div class="card-header">
+          <h3>Sonoridad Objetivo (Target LUFS)</h3>
+        </div>
+        <p class="card-desc">Establece el nivel deseado. La extensión igualará automáticamente vídeos silenciosos o anuncios fuertes a este volumen.</p>
+
+        <div class="control-group">
+          <div class="slider-row">
+            <input type="range" id="target-lufs-slider" min="-24" max="-8" step="0.5" value="-14">
+            <span class="value-badge" id="target-lufs-val">-14.0 LUFS</span>
+          </div>
+        </div>
+
+        <div class="presets-section">
+          <h4>Perfiles Predefinidos:</h4>
+          <div class="preset-buttons">
+            <button class="preset-btn active" data-preset="flat">Flat</button>
+            <button class="preset-btn" data-preset="podcast">🎙️ Voz / Podcast</button>
+            <button class="preset-btn" data-preset="cinema">🎬 Cine / Nocturno</button>
+            <button class="preset-btn" data-preset="bass">🔊 Bass Boost</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: 10-Band Graphic Equalizer -->
+    <section class="tab-content" id="eq-tab">
+      <div class="card">
+        <div class="card-header">
+          <h3>Ecualizador Gráfico de 10 Bandas</h3>
+          <button class="btn-sm" id="reset-eq-btn">🔄 Reset</button>
+        </div>
+
+        <div class="eq-sliders-grid">
+          <div class="eq-col"><span class="freq">31</span><input type="range" class="eq-slider" data-band="0" min="-12" max="12" value="0" orient="vertical"><span class="gain">0dB</span></div>
+          <div class="eq-col"><span class="freq">62</span><input type="range" class="eq-slider" data-band="1" min="-12" max="12" value="0" orient="vertical"><span class="gain">0dB</span></div>
+          <div class="eq-col"><span class="freq">125</span><input type="range" class="eq-slider" data-band="2" min="-12" max="12" value="0" orient="vertical"><span class="gain">0dB</span></div>
+          <div class="eq-col"><span class="freq">250</span><input type="range" class="eq-slider" data-band="3" min="-12" max="12" value="0" orient="vertical"><span class="gain">0dB</span></div>
+          <div class="eq-col"><span class="freq">500</span><input type="range" class="eq-slider" data-band="4" min="-12" max="12" value="0" orient="vertical"><span class="gain">0dB</span></div>
+          <div class="eq-col"><span class="freq">1k</span><input type="range" class="eq-slider" data-band="5" min="-12" max="12" value="0" orient="vertical"><span class="gain">0dB</span></div>
+          <div class="eq-col"><span class="freq">2k</span><input type="range" class="eq-slider" data-band="6" min="-12" max="12" value="0" orient="vertical"><span class="gain">0dB</span></div>
+          <div class="eq-col"><span class="freq">4k</span><input type="range" class="eq-slider" data-band="7" min="-12" max="12" value="0" orient="vertical"><span class="gain">0dB</span></div>
+          <div class="eq-col"><span class="freq">8k</span><input type="range" class="eq-slider" data-band="8" min="-12" max="12" value="0" orient="vertical"><span class="gain">0dB</span></div>
+          <div class="eq-col"><span class="freq">16k</span><input type="range" class="eq-slider" data-band="9" min="-12" max="12" value="0" orient="vertical"><span class="gain">0dB</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: About Us & Credits -->
+    <section class="tab-content" id="about-tab">
+      <div class="card about-card">
+        <div class="author-avatar">
+          <span>👨‍💻</span>
+        </div>
+        <h3 class="author-name">Adelys Alberto Belen</h3>
+        <p class="author-role">Software Developer</p>
+
+        <div class="author-contact">
+          <a href="mailto:dev@adalbeca.com" target="_blank" class="email-badge">
+            <span class="email-icon">✉️</span> dev@adalbeca.com
+          </a>
+        </div>
+
+        <div class="app-info-footer">
+          <p class="app-version">Audio Normalizer & Equalizer v1.0.0</p>
+          <p class="app-tagline">Desarrollado con alto rendimiento, liberación de memoria y audio sin distorsión.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic Memory Footprint Footer -->
+    <footer class="app-footer">
+      <div class="memory-indicator">
+        <span class="memory-icon">⚡</span>
+        <span>Uso de Memoria RAM: <strong id="memory-usage-val">-- MB</strong></span>
+        <span class="memory-tag">Dinámico</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
