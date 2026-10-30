@@ -1,0 +1,5 @@
+# macOS metadata
+.DS_Store
+
+# Build artifacts (regenerate with the zip command in README "Publicar")
+*.zip
